@@ -1,7 +1,8 @@
 import './App.scss';
+import Directory from './components/directory/directory';
 
 function App() {
-	return <h1>Template react eslint project</h1>;
+	return <Directory />;
 }
 
 export default App;
