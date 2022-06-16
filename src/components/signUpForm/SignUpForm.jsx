@@ -3,6 +3,9 @@ import {
 	createAuthUserWithEmailAndPassword,
 	createUserDocumentFromAuth,
 } from '../../utils/firebase/firebase';
+import CustomButton from '../UI/Buttons/CustomButton';
+import CustomInput from '../UI/Inputs/CustomInput';
+import './SignUpForm.scss';
 
 const defaultFormFields = {
 	displayName: '',
@@ -42,11 +45,12 @@ const SignUpForm = () => {
 	};
 
 	return (
-		<>
-			<h1>Sign up with your email and password</h1>
+		<div className='sign-up-container'>
+			<h2>Don't have an account?</h2>
+			<span>Sign up with your email and password</span>
 			<form className='form' onSubmit={handleSubmitForm}>
-				<label htmlFor='input-text'>Display name</label>
-				<input
+				<CustomInput
+					label='Display name'
 					type='text'
 					id='input-name'
 					required
@@ -55,8 +59,8 @@ const SignUpForm = () => {
 					onChange={handleChangeInputFields}
 				/>
 
-				<label htmlFor='input-text'>Email</label>
-				<input
+				<CustomInput
+					label='Email'
 					type='email'
 					id='input-email'
 					required
@@ -65,8 +69,8 @@ const SignUpForm = () => {
 					onChange={handleChangeInputFields}
 				/>
 
-				<label htmlFor='input-password'>Password</label>
-				<input
+				<CustomInput
+					label='Password'
 					type='password'
 					id='input-password-repeat'
 					required
@@ -75,8 +79,8 @@ const SignUpForm = () => {
 					onChange={handleChangeInputFields}
 				/>
 
-				<label htmlFor='input-password'>Password repeat</label>
-				<input
+				<CustomInput
+					label='Password repeat'
 					type='password'
 					id='input-password-repeat'
 					required
@@ -84,10 +88,9 @@ const SignUpForm = () => {
 					value={confirmPassword}
 					onChange={handleChangeInputFields}
 				/>
-
-				<button className='form-btn'>Sign up!</button>
+				<CustomButton buttonType='default'>Sign up!</CustomButton>
 			</form>
-		</>
+		</div>
 	);
 };
 
