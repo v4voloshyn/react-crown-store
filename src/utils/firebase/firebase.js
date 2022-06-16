@@ -1,3 +1,4 @@
+import { firebaseConfig } from './firebaseConfig';
 import { initializeApp } from 'firebase/app';
 import {
 	getAuth,
@@ -8,29 +9,26 @@ import {
 
 import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore';
 
-const firebaseConfig = {
-	apiKey: process.env.REACT_APP_FIREBASE_API_KEY, // 'IzaSyCnhjFeaBYNiAUbccNagvHFga5rweawfkc' < it's not an apiKey!!
-	authDomain: 'crwn-clothes-store-db.firebaseapp.com',
-	projectId: 'crwn-clothes-store-db',
-	storageBucket: 'crwn-clothes-store-db.appspot.com',
-	messagingSenderId: '1078623237379',
-	appId: '1:1078623237379:web:978939b11f3fca9854a536',
-};
-
 // Initialize Firebase
 
 export const firebaseApp = initializeApp(firebaseConfig);
 
-const provider = new GoogleAuthProvider();
+const googleProvider = new GoogleAuthProvider();
 
-provider.setCustomParameters({
+googleProvider.setCustomParameters({
 	prompt: 'select_account',
 });
 
 export const auth = getAuth();
-export const signInWithGooglePopup = () => signInWithPopup(auth, provider);
+
+export const signInWithGooglePopup = () =>
+	signInWithPopup(auth, googleProvider);
+
+export const signInWithGoogleRedirect = () =>
+	signInWithRedirect(auth, googleProvider);
 
 export const firestoreDB = getFirestore();
+
 export const createUserDocumentFromAuth = async (userAuth) => {
 	const userDocRef = doc(firestoreDB, 'users', userAuth.uid);
 
