@@ -37,16 +37,15 @@ const SignUpForm = () => {
 			const { user } = await createAuthUserWithEmailAndPassword(email, password);
 
 			await createUserDocumentFromAuth(user, { displayName });
+			setFormFields(defaultFormFields); // reset form fields
 		} catch (error) {
 			throw new Error(error);
 		}
-
-		setFormFields(defaultFormFields);
 	};
 
 	return (
-		<div className='sign-up-container'>
-			<h2>Don't have an account?</h2>
+		<div className='auth-container'>
+			<h2>I do not have an account</h2>
 			<span>Sign up with your email and password</span>
 			<form className='form' onSubmit={handleSubmitForm}>
 				<CustomInput
@@ -88,7 +87,7 @@ const SignUpForm = () => {
 					value={confirmPassword}
 					onChange={handleChangeInputFields}
 				/>
-				<CustomButton buttonType='default'>Sign up!</CustomButton>
+				<CustomButton>Sign up!</CustomButton>
 			</form>
 		</div>
 	);

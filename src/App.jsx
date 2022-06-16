@@ -6,7 +6,7 @@ import NotFound from './routes/NotFound/NotFound';
 import Shop from './routes/Shop/Shop';
 
 import './App.scss';
-import SignIn from './routes/SignIn/SignIn';
+import Authentification from './routes/Authentification/Authentification';
 
 const App = () => {
 	return (
@@ -14,7 +14,7 @@ const App = () => {
 			<Route path='/' element={<Navigation />}>
 				<Route index element={<Home />} />
 				<Route path='shop' element={<Shop />} />
-				<Route path='signin' element={<SignIn />} />
+				<Route path='auth' element={<Authentification />} />
 			</Route>
 			<Route path='*' element={<NotFound />} />
 		</Routes>
