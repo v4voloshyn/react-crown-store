@@ -1,8 +1,8 @@
 export const firebaseConfig = {
-	apiKey: process.env.REACT_APP_FIREBASE_API_KEY, // 'IzaSyCnhjFeaBYNiAUbccNagvHFga5rweawfkc' < it's not an apiKey!!
-	authDomain: 'crwn-clothes-store-db.firebaseapp.com',
-	projectId: 'crwn-clothes-store-db',
-	storageBucket: 'crwn-clothes-store-db.appspot.com',
-	messagingSenderId: '1078623237379',
-	appId: '1:1078623237379:web:978939b11f3fca9854a536',
+	apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+	authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+	projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+	storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+	messagingSenderId: process.env.REACT_APP_FIREBASE_SENDER_ID,
+	appId: process.env.REACT_APP_FIREBASE_APP_ID,
 };
