@@ -2,11 +2,11 @@ import { Routes, Route } from 'react-router-dom';
 
 import Home from './routes/Home/Home';
 import Navigation from './routes/Navigation/Navigation';
-import NotFound from './routes/NotFound/NotFound';
+import Authentification from './routes/Authentification/Authentification';
 import Shop from './routes/Shop/Shop';
+import NotFound from './routes/NotFound/NotFound';
 
 import './App.scss';
-import Authentification from './routes/Authentification/Authentification';
 
 const App = () => {
 	return (
