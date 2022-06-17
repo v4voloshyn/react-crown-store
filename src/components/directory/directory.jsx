@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { fetchData } from '../../services/fetchShopData';
+import { fetchData } from '../../services/fetchCategoriesData';
 
 import CategoryItem from '../CategoryItem/CategoryItem';
 
