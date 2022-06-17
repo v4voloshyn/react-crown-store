@@ -50,7 +50,16 @@ const SignInForm = () => {
 			console.log(response);
 			setFormFields(defaultFormFields); // reset form fields
 		} catch (error) {
-			throw new Error(error);
+			switch (error.code) {
+				case 'auth/wrong-password':
+					alert('The password is incorrect');
+					break;
+				case 'auth/user-not-found':
+					alert('User with this email not found. Try other email');
+					break;
+				default:
+					console.log(error);
+			}
 		}
 	};
 
