@@ -1,19 +1,10 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import CategoryItem from '../category-item/CategoryItem';
+
+import { fetchData } from '../../services/fetchShopData';
+
+import CategoryItem from '../CategoryItem/CategoryItem';
 
 import './Directory.scss';
-
-const fetchData = async () => {
-	try {
-		const response = await axios.get(`http://localhost:7007/categories`);
-		if (response.statusText === 'OK') {
-			return response.data;
-		}
-	} catch (error) {
-		throw new Error(error);
-	}
-};
 
 const Directory = () => {
 	const [categories, setCategories] = useState([]);
