@@ -3,8 +3,10 @@ import {
 	createAuthUserWithEmailAndPassword,
 	createUserDocumentFromAuth,
 } from '../../utils/firebase/firebase';
+
 import CustomButton from '../UI/Buttons/CustomButton';
 import CustomInput from '../UI/Inputs/CustomInput';
+
 import './SignUpForm.scss';
 
 const defaultFormFields = {
@@ -30,13 +32,14 @@ const SignUpForm = () => {
 		e.preventDefault();
 
 		if (password !== confirmPassword) {
-			throw new Error('The passwords does not match');
+			throw new Error('Passwords does not match');
 		}
 
 		try {
 			const { user } = await createAuthUserWithEmailAndPassword(email, password);
 
 			await createUserDocumentFromAuth(user, { displayName });
+
 			setFormFields(defaultFormFields); // reset form fields
 		} catch (error) {
 			throw new Error(error);
