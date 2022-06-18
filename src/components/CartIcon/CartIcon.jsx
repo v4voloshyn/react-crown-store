@@ -1,14 +1,13 @@
 import React, { useContext } from 'react';
 
-import { ProductsContext } from '../../context/ProductsContext';
+import { CartContext } from '../../context/CartContext';
 
 import { ReactComponent as ShoppingCartIcon } from '../../assets/shopping-bag.svg';
 
 import './CartIcon.scss';
 
 const CartIcon = () => {
-	const { setCartDropdownVisible } = useContext(ProductsContext);
-	console.log(setCartDropdownVisible);
+	const { setCartDropdownVisible } = useContext(CartContext);
 
 	const changeCartModalState = () => {
 		setCartDropdownVisible((prevState) => !prevState);

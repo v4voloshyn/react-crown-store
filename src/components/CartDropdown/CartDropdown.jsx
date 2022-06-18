@@ -1,13 +1,13 @@
 import React, { useContext } from 'react';
 
-import { ProductsContext } from '../../context/ProductsContext';
+import { CartContext } from '../../context/CartContext';
 
 import CustomButton from '../UI/Buttons/CustomButton';
 
 import './CartDropdown.scss';
 
 const CartDropdown = () => {
-	const { isDropdownVisible } = useContext(ProductsContext);
+	const { isDropdownVisible } = useContext(CartContext);
 
 	return (
 		isDropdownVisible && (
