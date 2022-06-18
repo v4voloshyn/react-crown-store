@@ -3,12 +3,18 @@ import { fetchShopData } from '../services/fetchShopData1';
 
 export const ProductsContext = createContext({
 	products: [],
+	isDropdownVisible: true,
 });
 
 export const ProductsProvider = ({ children }) => {
 	const [products, setProducts] = useState([]);
+	const [isCartDropDownVisible, setCartDropdownVisible] = useState(false);
 
-	const value = { products };
+	const value = {
+		products,
+		isDropdownVisible: isCartDropDownVisible,
+		setCartDropdownVisible,
+	};
 
 	useEffect(() => {
 		fetchShopData().then((data) => setProducts(data));

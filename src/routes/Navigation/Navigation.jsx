@@ -4,7 +4,11 @@ import { Outlet, Link } from 'react-router-dom';
 import { UserContext } from '../../context/UserContext';
 import { signOutUser } from '../../utils/firebase/firebase.js';
 
+import CartIcon from '../../components/CartIcon/CartIcon';
+import CartDropdown from '../../components/CartDropdown/CartDropdown';
+
 import logo from '../../assets/crown.svg';
+
 import './Navigation.scss';
 
 const Navigation = () => {
@@ -29,7 +33,11 @@ const Navigation = () => {
 							Sign In
 						</Link>
 					)}
+					<Link to='/'>
+						<CartIcon />
+					</Link>
 				</div>
+				<CartDropdown />
 			</div>
 			<Outlet />
 		</>
