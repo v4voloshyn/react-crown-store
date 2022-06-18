@@ -7,16 +7,16 @@ import { ReactComponent as ShoppingCartIcon } from '../../assets/shopping-bag.sv
 import './CartIcon.scss';
 
 const CartIcon = () => {
-	const { setCartDropdownVisible } = useContext(CartContext);
+	const { setIsCartOpen } = useContext(CartContext);
 
 	const changeCartModalState = () => {
-		setCartDropdownVisible((prevState) => !prevState);
+		setIsCartOpen((prevState) => !prevState);
 	};
 
 	return (
 		<>
-			<div className='cart-icon-container'>
-				<ShoppingCartIcon className='shopping-icon' onClick={changeCartModalState} />
+			<div className='cart-icon-container' onClick={changeCartModalState}>
+				<ShoppingCartIcon className='shopping-icon' />
 				<span className='item-count'>5</span>
 			</div>
 		</>
