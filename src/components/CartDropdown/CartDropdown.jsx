@@ -18,7 +18,7 @@ const CartDropdown = () => {
 					<CartItem cartItem={item} key={item.id} />
 				))}
 			</div>
-			<CustomButton>I want it now!</CustomButton>
+			<CustomButton style={{ flex: '0 1 auto' }}>I want it now!</CustomButton>
 		</div>
 	);
 };

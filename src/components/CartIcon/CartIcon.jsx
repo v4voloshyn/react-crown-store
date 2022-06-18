@@ -7,7 +7,7 @@ import { ReactComponent as ShoppingCartIcon } from '../../assets/shopping-bag.sv
 import './CartIcon.scss';
 
 const CartIcon = () => {
-	const { setIsCartOpen } = useContext(CartContext);
+	const { setIsCartOpen, cartItemsCount } = useContext(CartContext);
 
 	const toggleIsCartOpen = () => {
 		setIsCartOpen((prevState) => !prevState);
@@ -17,7 +17,7 @@ const CartIcon = () => {
 		<>
 			<div className='cart-icon-container' onClick={toggleIsCartOpen}>
 				<ShoppingCartIcon className='shopping-icon' />
-				<span className='item-count'>5</span>
+				<span className='item-count'>{cartItemsCount}</span>
 			</div>
 		</>
 	);
