@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import ProductCard from '../../components/ProductCard/ProductCard';
 import { ProductsContext } from '../../context/ProductsContext';
 
