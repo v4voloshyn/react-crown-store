@@ -1,6 +1,15 @@
 import { firebaseConfig } from './firebaseConfig';
 import { initializeApp } from 'firebase/app';
-import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore';
+import {
+	getFirestore,
+	doc,
+	getDoc,
+	setDoc,
+	collection,
+	writeBatch,
+	query,
+	getDocs,
+} from 'firebase/firestore';
 import {
 	getAuth,
 	signInWithPopup,
@@ -15,8 +24,41 @@ import {
 // Initialize Firebase
 
 export const firebaseApp = initializeApp(firebaseConfig);
+
 export const firestoreDB = getFirestore();
+
 export const auth = getAuth();
+
+export const addCollectionAndDocuments = async (collectionKeyname, objectsToAdd) => {
+	// creating collection
+	const collectionRef = collection(firestoreDB, collectionKeyname);
+
+	// transaction method (success or fail) with *writeBatch*
+	const batch = writeBatch(firestoreDB);
+	// push Documents to created collection (write collection to the firebase)
+	objectsToAdd.forEach((object) => {
+		const docRef = doc(collectionRef, object.title.toLowerCase());
+		batch.set(docRef, object);
+	});
+
+	await batch.commit();
+	console.log('Butching is done!');
+};
+
+export const getCategoriesAndDocuments = async () => {
+	const collectionRef = collection(firestoreDB, 'categories');
+
+	const q = query(collectionRef);
+
+	const querySnapshot = await getDocs(q);
+	const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
+		const { items, title } = docSnapshot.data();
+		acc[title.toLowerCase()] = items;
+		return acc;
+	}, {});
+
+	return categoryMap;
+};
 
 const googleProvider = new GoogleAuthProvider();
 
