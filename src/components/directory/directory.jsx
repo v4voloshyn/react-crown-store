@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { fetchData } from '../../services/fetchCategoriesData';
 
-import CategoryItem from '../CategoryItem/CategoryItem';
+import DirectoryItem from '../DirectoryItem/DirectoryItem';
 
 import './Directory.scss';
 
@@ -19,7 +19,7 @@ const Directory = () => {
 	return (
 		<div className='categories-container'>
 			{categories.map((category) => (
-				<CategoryItem key={category.id} {...category} />
+				<DirectoryItem key={category.id} {...category} />
 			))}
 		</div>
 	);

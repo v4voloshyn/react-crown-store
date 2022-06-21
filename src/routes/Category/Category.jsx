@@ -19,7 +19,7 @@ const Category = () => {
 
 	return (
 		<>
-			<h2 className='title'>{category}</h2>
+			<h2 className='category-title'>{category}</h2>
 			<div className='category-container'>
 				{products && products.map((product) => <ProductCard key={product.id} {...product} />)}
 			</div>
