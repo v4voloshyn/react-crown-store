@@ -4,7 +4,7 @@ import {
 	createUserDocumentFromAuth,
 } from '../../utils/firebase/firebase';
 
-import CustomButton from '../UI/Buttons/CustomButton';
+import CustomButton, { BUTTON_CLASSES } from '../UI/Buttons/CustomButton';
 import CustomInput from '../UI/Inputs/CustomInput';
 
 import './SignUpForm.scss';
@@ -90,7 +90,7 @@ const SignUpForm = () => {
 					value={confirmPassword}
 					onChange={handleChangeInputFields}
 				/>
-				<CustomButton>Sign up!</CustomButton>
+				<CustomButton buttonType={BUTTON_CLASSES.base}>Sign up!</CustomButton>
 			</form>
 		</div>
 	);

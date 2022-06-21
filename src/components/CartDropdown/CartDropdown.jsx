@@ -5,10 +5,11 @@ import { useNavigate } from 'react-router-dom';
 import { CartContext } from '../../context/CartContext';
 
 import CartItem from '../CartItem/CartItem';
+import { DefaultButton } from '../UI/Buttons/Buttons.styles';
 
-import CustomButton from '../UI/Buttons/CustomButton';
+import { BUTTON_CLASSES } from '../UI/Buttons/CustomButton';
 
-import './CartDropdown.scss';
+import { CartDropdownContainer, CartItemsWrapper, EmptyCartMessage } from './CartDropdown.styles';
 
 const CartDropdown = () => {
 	const { cartItems, setIsCartOpen } = useContext(CartContext);
@@ -20,16 +21,21 @@ const CartDropdown = () => {
 	};
 
 	return (
-		<div className='cart-dropdown-container'>
-			<div className='cart-items'>
-				{cartItems.map((item) => (
-					<CartItem cartItem={item} key={item.id} />
-				))}
-			</div>
-			<CustomButton style={{ flex: '0 1 auto' }} onClick={go2CheckoutPage}>
-				I want it now!
-			</CustomButton>
-		</div>
+		<CartDropdownContainer>
+			<CartItemsWrapper>
+				{cartItems.length ? (
+					cartItems.map((item) => <CartItem cartItem={item} key={item.id} />)
+				) : (
+					<EmptyCartMessage>The cart is empty</EmptyCartMessage>
+				)}
+			</CartItemsWrapper>
+
+			{cartItems.length ? (
+				<DefaultButton buttonType={BUTTON_CLASSES.base} onClick={go2CheckoutPage}>
+					I want it now!
+				</DefaultButton>
+			) : null}
+		</CartDropdownContainer>
 	);
 };
 

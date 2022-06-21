@@ -8,7 +8,7 @@ import {
 	signInAuthUserWithEmailAndPassword,
 } from '../../utils/firebase/firebase';
 
-import CustomButton from '../../components/UI/Buttons/CustomButton';
+import CustomButton, { BUTTON_CLASSES } from '../../components/UI/Buttons/CustomButton';
 import CustomInput from '../../components/UI/Inputs/CustomInput';
 
 import './SignInForm.scss';
@@ -90,8 +90,8 @@ const SignInForm = () => {
 					onChange={handleChangeInputFields}
 				/>
 				<div className='buttons-container'>
-					<CustomButton>Sign up!</CustomButton>
-					<CustomButton type='button' onClick={signInWithGoogle} buttonType='google'>
+					<CustomButton buttonType={BUTTON_CLASSES.base}>Sign up!</CustomButton>
+					<CustomButton buttonType={BUTTON_CLASSES.google} type='button' onClick={signInWithGoogle}>
 						Sign in with Google
 					</CustomButton>
 				</div>
