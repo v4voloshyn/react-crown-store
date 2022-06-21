@@ -1,9 +1,10 @@
 import React from 'react';
+
 import './CategoryItem.scss';
 
 function CategoryItem({ title, imageUrl }) {
 	return (
-		<div className='category-container'>
+		<div className='category-item-container'>
 			<div className='background-image' style={{ backgroundImage: `url(${imageUrl})` }}></div>
 			<div className='category-body-container'>
 				<h2>{title.toUpperCase()}</h2>
