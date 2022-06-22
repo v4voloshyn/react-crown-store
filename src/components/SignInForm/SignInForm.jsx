@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 // import { getRedirectResult } from 'firebase/auth';
 import {
 	auth,
@@ -65,6 +65,7 @@ const SignInForm = () => {
 	// useEffect(() => {
 	// 	logUserWithRedirect();
 	// }, []);
+
 	return (
 		<div className='auth-container'>
 			<h2>I already have an account</h2>
