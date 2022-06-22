@@ -1,25 +1,18 @@
-import { useEffect, useState } from 'react';
+import { useContext } from 'react';
 
-import { fetchData } from '../../services/fetchCategoriesData';
+import { CategoriesContext } from '../../context/CategoriesContext';
 
 import DirectoryItem from '../DirectoryItem/DirectoryItem';
 
 import './Directory.scss';
 
 const Directory = () => {
-	const [categories, setCategories] = useState([]);
-	useEffect(() => {
-		fetchData().then((res) => {
-			setCategories(res);
-		});
-	}, []);
-
-	console.log(categories);
+	const { directories } = useContext(CategoriesContext);
 
 	return (
 		<div className='categories-container'>
-			{categories.map((category) => (
-				<DirectoryItem key={category.id} {...category} />
+			{directories.map((directory) => (
+				<DirectoryItem key={directory.id} {...directory} />
 			))}
 		</div>
 	);

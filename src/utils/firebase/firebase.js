@@ -60,6 +60,20 @@ export const getCategoriesAndDocuments = async () => {
 	return categoryMap;
 };
 
+export const getDirectoriesAndDocuments = async () => {
+	const collectionRef = collection(firestoreDB, 'directory');
+
+	const q = query(collectionRef);
+
+	const querySnapshot = await getDocs(q);
+	const directoryArr = querySnapshot.docs.reduce((acc, docSnapshot) => {
+		const { id, title, imageUrl } = docSnapshot.data();
+		return [...acc, { id, title, imageUrl }];
+	}, []);
+
+	return directoryArr;
+};
+
 const googleProvider = new GoogleAuthProvider();
 
 googleProvider.setCustomParameters({
