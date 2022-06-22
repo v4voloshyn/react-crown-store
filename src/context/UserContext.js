@@ -17,7 +17,7 @@ export const UserProvider = ({ children }) => {
 	useEffect(() => {
 		// Observe user auth state and rerender components
 		const observer = onAuthStateChangedListener((user) => {
-			console.log(user);
+			// console.log(user);
 			if (user) {
 				createUserDocumentFromAuth(user);
 			}

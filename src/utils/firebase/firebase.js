@@ -106,7 +106,7 @@ export const createUserDocumentFromAuth = async (userAuth, additionalInfo = {}) 
 			console.log('Error of creating a new user', error.message);
 		}
 	}
-	console.log(userDocRef);
+	// console.log(userDocRef);
 	return userDocRef;
 };
 
