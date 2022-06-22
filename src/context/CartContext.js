@@ -28,6 +28,8 @@ const deleteCartItem = (cartItems, cartItemToDelete) => {
 	const confirmation = window.confirm(`Remove ${cartItemToDelete.name} from cart?`);
 	if (confirmation) {
 		return cartItems.filter((item) => item.id !== cartItemToDelete.id);
+	} else {
+		return cartItems;
 	}
 };
 
