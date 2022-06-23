@@ -1,17 +1,18 @@
-import { useState } from 'react';
-// import { getRedirectResult } from 'firebase/auth';
+import './SignInForm.scss';
+
+import CustomButton, { BUTTON_CLASSES } from '../../components/UI/Buttons/CustomButton';
 import {
 	auth,
 	createUserDocumentFromAuth,
-	// signInWithGoogleRedirect,
-	signInWithGooglePopup,
 	signInAuthUserWithEmailAndPassword,
+	signInWithGooglePopup,
 } from '../../utils/firebase/firebase';
 
-import CustomButton, { BUTTON_CLASSES } from '../../components/UI/Buttons/CustomButton';
 import CustomInput from '../../components/UI/Inputs/CustomInput';
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
-import './SignInForm.scss';
+// import { getRedirectResult } from 'firebase/auth';
 
 const defaultFormFields = {
 	email: '',
@@ -22,6 +23,8 @@ const SignInForm = () => {
 	const [formFields, setFormFields] = useState(defaultFormFields);
 	const { email, password } = formFields;
 
+	const navigate = useNavigate();
+
 	const handleChangeInputFields = (e) => {
 		const { name, value } = e.target;
 		setFormFields({
@@ -30,16 +33,12 @@ const SignInForm = () => {
 		});
 	};
 
-	// const logUserWithRedirect = async () => {
-	// 	const response = await getRedirectResult(auth);
-	// 	console.log(response);
-	// 	if (response) {
-	// 		await createUserDocumentFromAuth(response.user);
-	// 	}
-	// };
-
 	const signInWithGoogle = async () => {
-		await signInWithGooglePopup();
+		const response = await signInWithGooglePopup();
+		if (response) {
+			setFormFields(defaultFormFields); // reset form fields
+			navigate('/');
+		}
 	};
 
 	const handleSubmitForm = async (e) => {
@@ -91,7 +90,7 @@ const SignInForm = () => {
 					onChange={handleChangeInputFields}
 				/>
 				<div className='buttons-container'>
-					<CustomButton buttonType={BUTTON_CLASSES.base}>Sign up!</CustomButton>
+					<CustomButton buttonType={BUTTON_CLASSES.base}>Sign in!</CustomButton>
 					<CustomButton buttonType={BUTTON_CLASSES.google} type='button' onClick={signInWithGoogle}>
 						Sign in with Google
 					</CustomButton>
