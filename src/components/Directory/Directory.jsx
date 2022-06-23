@@ -1,13 +1,11 @@
-import { useContext } from 'react';
-
-import { CategoriesContext } from '../../context/CategoriesContext';
-
-import DirectoryItem from '../DirectoryItem/DirectoryItem';
-
 import './Directory.scss';
 
+import DirectoryItem from '../DirectoryItem/DirectoryItem';
+import { selectDirectories } from '../../redux/categoriesStore/category.selector';
+import { useSelector } from 'react-redux';
+
 const Directory = () => {
-	const { directories } = useContext(CategoriesContext);
+	const directories = useSelector(selectDirectories);
 
 	return (
 		<div className='categories-container'>

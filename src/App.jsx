@@ -1,20 +1,17 @@
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import './App.scss';
 
+import { Route, Routes } from 'react-router-dom';
 import { createUserDocumentFromAuth, onAuthStateChangedListener } from './utils/firebase/firebase';
 
-import { Routes, Route } from 'react-router-dom';
-
-import { setCurrentUser } from './redux/userStore/user.action';
-
+import Authentification from './routes/Authentification/Authentification';
+import Checkout from './routes/Checkout/Checkout';
 import Home from './routes/Home/Home';
 import Navigation from './routes/Navigation/Navigation';
-import Authentification from './routes/Authentification/Authentification';
-import Shop from './routes/Shop/Shop';
-import Checkout from './routes/Checkout/Checkout';
 import NotFound from './routes/NotFound/NotFound';
-
-import './App.scss';
+import Shop from './routes/Shop/Shop';
+import { setCurrentUser } from './redux/userStore/user.action';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 
 const App = () => {
 	const dispatch = useDispatch();

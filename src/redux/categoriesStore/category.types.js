@@ -1,0 +1,4 @@
+export const CATEGORIES_ACTIONS = {
+	SET_CATEGORIES: 'categories/SET_CATEGORIES',
+	SET_DIRECTORIES: 'categories/SET_DIRECTORIES',
+};
