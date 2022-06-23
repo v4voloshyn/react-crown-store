@@ -1,4 +1,11 @@
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+
+import { createUserDocumentFromAuth, onAuthStateChangedListener } from './utils/firebase/firebase';
+
 import { Routes, Route } from 'react-router-dom';
+
+import { setCurrentUser } from './redux/userStore/user.action';
 
 import Home from './routes/Home/Home';
 import Navigation from './routes/Navigation/Navigation';
@@ -10,6 +17,20 @@ import NotFound from './routes/NotFound/NotFound';
 import './App.scss';
 
 const App = () => {
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		// Observe user auth state and rerender components
+		const observer = onAuthStateChangedListener((user) => {
+			if (user) {
+				createUserDocumentFromAuth(user);
+			}
+			dispatch(setCurrentUser(user));
+		});
+
+		return observer;
+	}, [dispatch]);
+
 	return (
 		<Routes>
 			<Route path='/' element={<Navigation />}>
