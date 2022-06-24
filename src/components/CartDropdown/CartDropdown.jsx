@@ -1,19 +1,21 @@
-import { useContext } from 'react';
-
-import { useNavigate } from 'react-router-dom';
-
-import { CartContext } from '../../context/CartContext';
-
-import CartItem from '../CartItem/CartItem';
-import { DefaultButton } from '../UI/Buttons/Buttons.styles';
+import { CartDropdownContainer, CartItemsWrapper, EmptyCartMessage } from './CartDropdown.styles';
 
 import { BUTTON_CLASSES } from '../UI/Buttons/CustomButton';
-
-import { CartDropdownContainer, CartItemsWrapper, EmptyCartMessage } from './CartDropdown.styles';
+import { CartContext } from '../../context/CartContext';
+import CartItem from '../CartItem/CartItem';
+import { DefaultButton } from '../UI/Buttons/Buttons.styles';
+import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useOutsideClick } from './../../hooks/useOutsideClick';
 
 const CartDropdown = () => {
 	const { cartItems, setIsCartOpen } = useContext(CartContext);
 	const navigate = useNavigate();
+
+	const closeCartNodeRef = useOutsideClick(
+		() => setIsCartOpen(false),
+		document.getElementById('cart')
+	);
 
 	const go2CheckoutPage = () => {
 		navigate('/checkout');
@@ -21,7 +23,7 @@ const CartDropdown = () => {
 	};
 
 	return (
-		<CartDropdownContainer>
+		<CartDropdownContainer ref={closeCartNodeRef}>
 			<CartItemsWrapper>
 				{cartItems.length ? (
 					cartItems.map((item) => <CartItem cartItem={item} key={item.id} />)
