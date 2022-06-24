@@ -1,25 +1,26 @@
-import { firebaseConfig } from './firebaseConfig';
-import { initializeApp } from 'firebase/app';
 import {
-	getFirestore,
-	doc,
-	getDoc,
-	setDoc,
-	collection,
-	writeBatch,
-	query,
-	getDocs,
-} from 'firebase/firestore';
-import {
-	getAuth,
-	signInWithPopup,
-	signInWithRedirect,
-	signInWithEmailAndPassword,
 	GoogleAuthProvider,
 	createUserWithEmailAndPassword,
-	signOut,
+	getAuth,
 	onAuthStateChanged,
+	signInWithEmailAndPassword,
+	signInWithPopup,
+	signInWithRedirect,
+	signOut,
 } from 'firebase/auth';
+import {
+	collection,
+	doc,
+	getDoc,
+	getDocs,
+	getFirestore,
+	query,
+	setDoc,
+	writeBatch,
+} from 'firebase/firestore';
+
+import { firebaseConfig } from './firebaseConfig';
+import { initializeApp } from 'firebase/app';
 
 // Initialize Firebase
 
@@ -51,13 +52,7 @@ export const getCategoriesAndDocuments = async () => {
 	const q = query(collectionRef);
 
 	const querySnapshot = await getDocs(q);
-	const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
-		const { items, title } = docSnapshot.data();
-		acc[title.toLowerCase()] = items;
-		return acc;
-	}, {});
-
-	return categoryMap;
+	return querySnapshot.docs.map((docSnapshot) => docSnapshot.data());
 };
 
 export const getDirectoriesAndDocuments = async () => {
@@ -66,12 +61,11 @@ export const getDirectoriesAndDocuments = async () => {
 	const q = query(collectionRef);
 
 	const querySnapshot = await getDocs(q);
-	const directoryArr = querySnapshot.docs.reduce((acc, docSnapshot) => {
-		const { id, title, imageUrl } = docSnapshot.data();
-		return [...acc, { id, title, imageUrl }];
-	}, []);
-
-	return directoryArr;
+	return querySnapshot.docs.map((docSnapshot) => docSnapshot.data());
+	// .reduce((acc, docSnapshot) => {
+	// 	const { id, title, imageUrl } = docSnapshot.data();
+	// 	return [...acc, { id, title, imageUrl }];
+	// }, []);
 };
 
 const googleProvider = new GoogleAuthProvider();
