@@ -1,8 +1,7 @@
-import { useContext } from 'react';
+import { Icon, IconContainer, ItemCount } from './CartIcon.styles';
 
 import { CartContext } from '../../context/CartContext';
-
-import { Icon, IconContainer, ItemCount } from './CartIcon.styles';
+import { useContext } from 'react';
 
 const CartIcon = () => {
 	const { setIsCartOpen, cartItemsCount } = useContext(CartContext);
@@ -13,7 +12,7 @@ const CartIcon = () => {
 
 	return (
 		<>
-			<IconContainer onClick={toggleIsCartOpen}>
+			<IconContainer onClick={toggleIsCartOpen} id='cart'>
 				<Icon />
 				<ItemCount>{cartItemsCount}</ItemCount>
 			</IconContainer>
