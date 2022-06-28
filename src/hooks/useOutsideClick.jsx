@@ -15,7 +15,7 @@ export const useOutsideClick = (handler, toggleButton) => {
 		return () => {
 			document.removeEventListener('mouseup', clickOutsideHandler);
 		};
-	}, []);
+	}, [handler, toggleButton]);
 
 	return domNodeRef;
 };
