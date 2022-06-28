@@ -45,7 +45,7 @@ const SignInForm = () => {
 		e.preventDefault();
 		try {
 			const response = await signInAuthUserWithEmailAndPassword(email, password);
-			console.log(response);
+			// console.log(response);
 			setFormFields(defaultFormFields); // reset form fields
 		} catch (error) {
 			switch (error.code) {
