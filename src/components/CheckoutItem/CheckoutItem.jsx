@@ -1,31 +1,37 @@
-import { useContext } from 'react';
-import { CartContext } from '../../context/CartContext';
-
 import {
+	Arrow,
+	BaseSpan,
 	CheckoutItemContainer,
 	ImageContainer,
-	BaseSpan,
-	Arrow,
 	Quantity,
 	RemoveButton,
 	Value,
 } from './CheckoutItem.styles.jsx';
+import {
+	addItemToCart,
+	deleteProductFromCart,
+	removeItemFromCart,
+} from '../../redux/cartStore/cart.action';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { selectCartItems } from '../../redux/cartStore/cart.selector';
 
 const CheckoutItem = (cartItem) => {
+	const dispatch = useDispatch();
 	const { name, price, imageUrl, quantity } = cartItem;
 
-	const { removeItemFromCart, deleteProductFromCart, addItemToCart } = useContext(CartContext);
+	const cartItems = useSelector(selectCartItems);
 
 	const increaseProductQuantity = () => {
-		addItemToCart(cartItem);
+		dispatch(addItemToCart(cartItems, cartItem));
 	};
 
 	const handleRemove = () => {
-		removeItemFromCart(cartItem);
+		dispatch(removeItemFromCart(cartItems, cartItem));
 	};
 
 	const handleDelete = () => {
-		deleteProductFromCart(cartItem);
+		dispatch(deleteProductFromCart(cartItems, cartItem));
 	};
 
 	return (
