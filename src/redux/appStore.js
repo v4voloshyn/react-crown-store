@@ -5,23 +5,15 @@ import logger from 'redux-logger';
 import { rootReducer } from './rootReducer';
 import storage from 'redux-persist/lib/storage';
 
-const loggerMiddleware = (state) => (next) => (action) => {
-	if (!action.type) {
-		return next(action);
-	}
+const middlewares = [process.env.NODE_ENV === 'development' && logger].filter(Boolean);
+console.log(middlewares);
 
-	console.log('action.Type', action.type);
-	console.log('action.Payload', action.payload);
-	console.log('currentState', state.getState());
-
-	next(action);
-
-	console.log('newState', state.getState());
-};
-
-const middlewares = [loggerMiddleware];
-
-const composedEnhancers = compose(applyMiddleware(...middlewares));
+const composeEnhancer =
+	(process.env.NODE_ENV === 'development' &&
+		window &&
+		window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) ||
+	compose;
+const composedEnhancers = composeEnhancer(applyMiddleware(...middlewares));
 
 const persistConfig = {
 	key: 'root',
