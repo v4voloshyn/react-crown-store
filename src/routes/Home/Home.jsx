@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 
+import { COLLECTIONS_ENUM } from '../../utils/firebase/collections.enum';
 import Directory from '../../components/Directory/Directory';
 import { Outlet } from 'react-router-dom';
 import { getCollectionAndDocuments } from '../../utils/firebase/firebase';
@@ -12,7 +13,7 @@ const Home = () => {
 	useEffect(() => {
 		// addCollectionAndDocuments('directory', DIRECTORY);
 		const getDirectories = async () => {
-			const directories = await getCollectionAndDocuments('directory');
+			const directories = await getCollectionAndDocuments(COLLECTIONS_ENUM.DIRECTORY);
 			dispatch(setDirectories(directories));
 		};
 		getDirectories();

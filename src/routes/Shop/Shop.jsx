@@ -2,6 +2,7 @@ import './Shop.scss';
 
 import { Route, Routes } from 'react-router-dom';
 
+import { COLLECTIONS_ENUM } from '../../utils/firebase/collections.enum';
 import CategoriesPreview from '../CategoriesPreview/CategoriesPreview';
 import Category from '../Category/Category';
 import { getCollectionAndDocuments } from '../../utils/firebase/firebase';
@@ -15,7 +16,7 @@ const Shop = () => {
 	useEffect(() => {
 		// addCollectionAndDocuments('categories', SHOP_DATA);
 		const getCategories = async () => {
-			const categories = await getCollectionAndDocuments('categories');
+			const categories = await getCollectionAndDocuments(COLLECTIONS_ENUM.CATEGORIES);
 			dispatch(setCategories(categories));
 		};
 
