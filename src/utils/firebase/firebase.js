@@ -46,26 +46,13 @@ export const addCollectionAndDocuments = async (collectionKeyname, objectsToAdd)
 	console.log('Butching is done!');
 };
 
-export const getCategoriesAndDocuments = async () => {
-	const collectionRef = collection(firestoreDB, 'categories');
+export const getCollectionAndDocuments = async (collectionName) => {
+	const collectionRef = collection(firestoreDB, collectionName);
 
 	const q = query(collectionRef);
 
 	const querySnapshot = await getDocs(q);
 	return querySnapshot.docs.map((docSnapshot) => docSnapshot.data());
-};
-
-export const getDirectoriesAndDocuments = async () => {
-	const collectionRef = collection(firestoreDB, 'directory');
-
-	const q = query(collectionRef);
-
-	const querySnapshot = await getDocs(q);
-	return querySnapshot.docs.map((docSnapshot) => docSnapshot.data());
-	// .reduce((acc, docSnapshot) => {
-	// 	const { id, title, imageUrl } = docSnapshot.data();
-	// 	return [...acc, { id, title, imageUrl }];
-	// }, []);
 };
 
 const googleProvider = new GoogleAuthProvider();

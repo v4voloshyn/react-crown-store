@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 
 import Directory from '../../components/Directory/Directory';
 import { Outlet } from 'react-router-dom';
-import { getDirectoriesAndDocuments } from '../../utils/firebase/firebase';
+import { getCollectionAndDocuments } from '../../utils/firebase/firebase';
 import { setDirectories } from '../../redux/categoriesStore/category.action';
 import { useDispatch } from 'react-redux';
 
@@ -12,7 +12,7 @@ const Home = () => {
 	useEffect(() => {
 		// addCollectionAndDocuments('directory', DIRECTORY);
 		const getDirectories = async () => {
-			const directories = await getDirectoriesAndDocuments();
+			const directories = await getCollectionAndDocuments('directory');
 			dispatch(setDirectories(directories));
 		};
 		getDirectories();
