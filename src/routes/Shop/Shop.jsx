@@ -4,7 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 
 import CategoriesPreview from '../CategoriesPreview/CategoriesPreview';
 import Category from '../Category/Category';
-import { fetchCategoriesAsync } from '../../redux/categoriesStore/category.action';
+import { fetchCatgoriesStart } from '../../redux/categoriesStore/category.action';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 
@@ -13,8 +13,8 @@ const Shop = () => {
 
 	useEffect(() => {
 		// addCollectionAndDocuments('categories', SHOP_DATA);
-		dispatch(fetchCategoriesAsync());
-	}, [dispatch]);
+		dispatch(fetchCatgoriesStart());
+	}, []);
 
 	return (
 		<>

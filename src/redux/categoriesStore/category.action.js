@@ -1,7 +1,5 @@
 import { CATEGORIES_ACTIONS } from './category.types';
-import { COLLECTIONS_ENUM } from '../../utils/firebase/collections.enum';
 import { createAction } from '../../utils/reducer/reducer.utils';
-import { getCollectionAndDocuments } from '../../utils/firebase/firebase';
 
 // CATEGORIES ACTIONS
 export const fetchCatgoriesStart = () => createAction(CATEGORIES_ACTIONS.FETCH_CATEGORIES_START);
@@ -11,17 +9,6 @@ export const fetchCatgoriesSuccess = (categoriesArray) =>
 
 export const fetchCatgoriesError = (error) =>
 	createAction(CATEGORIES_ACTIONS.FETCH_CATEGORIES_ERROR, error);
-
-export const fetchCategoriesAsync = () => async (dispatch) => {
-	dispatch(fetchCatgoriesStart());
-
-	try {
-		const categoriesArray = await getCollectionAndDocuments(COLLECTIONS_ENUM.CATEGORIES);
-		dispatch(fetchCatgoriesSuccess(categoriesArray));
-	} catch (error) {
-		dispatch(fetchCatgoriesError(error));
-	}
-};
 
 // DIRECTORY ACTIONS
 export const setDirectories = (directories) =>
