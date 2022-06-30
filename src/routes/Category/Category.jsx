@@ -25,13 +25,13 @@ const Category = () => {
 	return (
 		<>
 			<h2 className='category-title'>{category}</h2>
-			<div className='category-container'>
-				{isLoading ? (
-					<Spinner />
-				) : (
-					products && products.map((product) => <ProductCard key={product.id} {...product} />)
-				)}
-			</div>
+			{isLoading ? (
+				<Spinner />
+			) : (
+				<div className='category-container'>
+					{products && products.map((product) => <ProductCard key={product.id} {...product} />)}
+				</div>
+			)}
 		</>
 	);
 };
