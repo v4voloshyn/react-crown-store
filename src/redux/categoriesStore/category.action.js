@@ -3,12 +3,7 @@ import { COLLECTIONS_ENUM } from '../../utils/firebase/collections.enum';
 import { createAction } from '../../utils/reducer/reducer.utils';
 import { getCollectionAndDocuments } from '../../utils/firebase/firebase';
 
-export const setCategories = (categoriesArray) =>
-	createAction(CATEGORIES_ACTIONS.SET_CATEGORIES, categoriesArray);
-
-export const setDirectories = (directories) =>
-	createAction(CATEGORIES_ACTIONS.SET_DIRECTORIES, directories);
-
+// CATEGORIES ACTIONS
 export const fetchCatgoriesStart = () => createAction(CATEGORIES_ACTIONS.FETCH_CATEGORIES_START);
 
 export const fetchCatgoriesSuccess = (categoriesArray) =>
@@ -27,3 +22,7 @@ export const fetchCategoriesAsync = () => async (dispatch) => {
 		dispatch(fetchCatgoriesError(error));
 	}
 };
+
+// DIRECTORY ACTIONS
+export const setDirectories = (directories) =>
+	createAction(CATEGORIES_ACTIONS.SET_DIRECTORIES, directories);

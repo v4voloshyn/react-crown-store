@@ -10,6 +10,13 @@ export const getDirectories = createSelector([selectCategoryReducer], (categorie
 	return categoriesSlice.directories;
 });
 
+export const selectIsCategoriesLoading = createSelector(
+	[selectCategoryReducer],
+	(categoriesSlice) => {
+		return categoriesSlice.isLoading;
+	}
+);
+
 export const selectCategoriesMap = createSelector([getCategories], (categories) =>
 	categories.reduce((acc, category) => {
 		const { items, title } = category;
