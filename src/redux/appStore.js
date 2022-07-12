@@ -18,7 +18,6 @@ const sagaMiddleware = createSagaMiddleware();
 const middlewares = [process.env.NODE_ENV === 'development' && logger, sagaMiddleware].filter(
 	Boolean
 );
-console.log(middlewares);
 
 const composeEnhancer =
 	(process.env.NODE_ENV === 'development' &&
