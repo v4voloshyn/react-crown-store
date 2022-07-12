@@ -1,18 +1,12 @@
 import './SignInForm.scss';
 
 import CustomButton, { BUTTON_CLASSES } from '../../components/UI/Buttons/CustomButton';
-import {
-	auth,
-	createUserDocumentFromAuth,
-	signInAuthUserWithEmailAndPassword,
-	signInWithGooglePopup,
-} from '../../utils/firebase/firebase';
+import { emailSignInStart, googleSignInStart } from '../../redux/userStore/user.action';
 
 import CustomInput from '../../components/UI/Inputs/CustomInput';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-
-// import { getRedirectResult } from 'firebase/auth';
 
 const defaultFormFields = {
 	email: '',
@@ -23,6 +17,7 @@ const SignInForm = () => {
 	const [formFields, setFormFields] = useState(defaultFormFields);
 	const { email, password } = formFields;
 
+	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
 	const handleChangeInputFields = (e) => {
@@ -33,21 +28,23 @@ const SignInForm = () => {
 		});
 	};
 
-	const signInWithGoogle = async () => {
-		const response = await signInWithGooglePopup();
-		if (response) {
-			setFormFields(defaultFormFields); // reset form fields
-			navigate('/');
-		}
+	const signInWithGoogle = () => {
+		dispatch(googleSignInStart());
+		// const response = await signInWithGooglePopup();
+		// if (response) {
+		// 	setFormFields(defaultFormFields); // reset form fields
+		// 	navigate('/');
+		// }
 	};
 
 	const handleSubmitForm = async (e) => {
 		e.preventDefault();
 
 		try {
-			const response = await signInAuthUserWithEmailAndPassword(email, password);
-			// console.log(response);
+			dispatch(emailSignInStart(email, password));
 			setFormFields(defaultFormFields); // reset form fields
+			// const response = await signInAuthUserWithEmailAndPassword(email, password);
+			// console.log(response);
 		} catch (error) {
 			switch (error.code) {
 				case 'auth/wrong-password':
